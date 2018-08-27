@@ -21,5 +21,6 @@ class RotateActivity : BaseGameActivity() {
         setTitle("有胆你就转")
         setBg(R.mipmap.ic_rotate_bg)
         (v_anim.drawable as AnimationDrawable).start()
+        v_rotate_view.start()
     }
 }

@@ -46,11 +46,6 @@ class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureVie
         isOpaque = false
         //监听view创建过程
         surfaceTextureListener = this
-        //监听页面生命周期
-        (context as? BaseGameActivity)?.onAcDestroy = {
-            //关闭动画
-            isRunning = false
-        }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
@@ -130,6 +125,7 @@ class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureVie
     }
 
     override fun onSurfaceTextureDestroyed(p0: SurfaceTexture?): Boolean {
+        isRunning = false
         return false
     }
 
