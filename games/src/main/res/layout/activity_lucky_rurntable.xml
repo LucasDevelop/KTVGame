@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".model.turntable.LuckyTurntableActivity">
+
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="430dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:src="@mipmap/ic_chassis" />
+
+        <com.heid.games.widget.LuckSpan2
+            android:id="@+id/v_lucky"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingBottom="52dp"
+            android:paddingLeft="50dp"
+            android:paddingRight="50dp" />
+
+        <ImageView
+            android:id="@+id/iv_start"
+            android:layout_marginTop="103dp"
+            android:layout_width="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="30dp"
+            android:contentDescription="@null"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_jiuchang_strt" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/v_change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center_horizontal"
+            android:drawableLeft="@mipmap/ic_logo2"
+            android:drawablePadding="10dp"
+            android:paddingBottom="10dp"
+            android:background="@drawable/selector_yellow_button"
+            android:gravity="center_vertical"
+            android:paddingLeft="45dp"
+            android:paddingRight="45dp"
+            android:paddingTop="10dp"
+            android:text="切换场景"
+            android:textColor="@android:color/white"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+</LinearLayout>

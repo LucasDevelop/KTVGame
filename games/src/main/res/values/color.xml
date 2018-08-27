@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="draw_small_bg">#2941b5</color>
+    <color name="yellows">#FFCC00</color>
+    <color name="yellows2">#cfa601</color>
+    <color name="blue">#6b58ff</color>
+    <color name="dialog_blue">#18348f</color>
+</resources>

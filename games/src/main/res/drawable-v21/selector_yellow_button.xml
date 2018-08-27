@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/yellows2"><!--这里是扩散水波纹的色值-->
+    <!--<item android:id="@android:id/mask" android:drawable="@drawable/shape_lucky_bt_bg" />-->
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="50dp"/>
+            <solid android:color="@color/yellows"/>
+        </shape>
+    </item>
+</ripple>
