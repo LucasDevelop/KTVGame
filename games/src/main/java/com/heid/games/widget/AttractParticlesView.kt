@@ -6,7 +6,8 @@ import android.os.SystemClock
 import android.util.AttributeSet
 import android.util.Log
 import android.view.TextureView
-import com.heid.games.base.BaseGameActivity
+import com.blankj.utilcode.util.ScreenUtils
+import com.blankj.utilcode.util.SizeUtils
 import java.util.*
 
 /**
@@ -18,15 +19,17 @@ import java.util.*
 class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureView(context, attrs), TextureView.SurfaceTextureListener, Runnable {
 
     //最大粒子数量
-    var MAX_PARTICLE = 10
+    var MAX_PARTICLE = 40
     //粒子运动加速度
-    var speed = 3
+    var acceleration = 3
     //绘画频率--值越小速度越快
-    val DRAW_RATE = 50
+    val DRAW_RATE = 20
     //粒子半径
-    val particleR = 10
+    val particleR = SizeUtils.dp2px(5f)
     //粒子汇聚点
-    var attractPoint = Point(0, 0)
+    var attractPoint = Point(ScreenUtils.getScreenWidth() / 2, ScreenUtils.getScreenHeight() / 2)
+    //当前粒子数量
+    var currentPointSize = 0
     //当前所有粒子所在的位置
     var particlePoints = ArrayList<APoint>()
     //创建粒子任务
@@ -37,7 +40,9 @@ class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureVie
     var viewWidth = 0
     var viewHeight = 0
     lateinit var canvas: Canvas
-    var save: Int = 0
+
+    var attrViewWidth: Int = 0
+    var attrViewHeight: Int = 0
 
     init {
         //常亮
@@ -54,18 +59,28 @@ class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureVie
         viewHeight = measuredHeight
     }
 
+    var index = 0
     override fun run() {
         while (isRunning) {
             //控制绘画频率
             val startTime = SystemClock.currentThreadTimeMillis()
             //判断粒子数量是否达到上限
-            if (particlePoints.size < MAX_PARTICLE) {
+            if (currentPointSize < MAX_PARTICLE) {
+                currentPointSize++
                 //开始加入粒子--粒子加入时间随机,位置随机
                 val joinTime = (random.nextInt(4) + 1) * 200.toLong()
-                val pointX = random.nextInt(viewWidth)
-                val pointY = random.nextInt(viewHeight)
+                var pointX = random.nextInt(viewWidth)
+                var pointY = random.nextInt(viewHeight)
+                when (index++ % 4) {
+                    0 -> pointY = particleR * 2
+                    1 -> pointX = viewWidth - particleR * 2
+                    2 -> pointY = viewHeight - particleR * 2
+                    3 -> pointX = particleR * 2
+                }
+
                 handler.postDelayed({
-                    particlePoints.add(APoint(pointX, pointY))
+                    if (isRunning)
+                        particlePoints.add(APoint(pointX, pointY, attractPoint, handler))
                 }, joinTime)
             }
             //开始绘画粒子
@@ -81,27 +96,32 @@ class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureVie
     private fun drawParticle() {
         try {
             canvas = lockCanvas()
-            save = canvas.save()
             //绘画透明背景
             canvas.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
-            //绘制粒子
-            particlePoints.forEach {
-                canvas.drawCircle(it.x.toFloat(), it.y.toFloat(), particleR.toFloat(), paint)
-                it.x += speed*(it.y/it.x)
-                it.y += speed
-                //超出控件外的粒子直接移除
-                if (it.x > viewWidth || it.y > viewHeight) particlePoints.remove(it)
+            //绘制粒子--这里必须要用迭代器
+            val iterator = particlePoints.iterator()
+            while (iterator.hasNext()) {
+                val next = iterator.next()
+                canvas.drawCircle(next.x.toFloat(), next.y.toFloat(), particleR.toFloat(), paint)
+                next.x += acceleration * (next.y / next.x)
+                next.y += acceleration
+                //超出控件外或者达到汇聚点的粒子直接移除
+                if ((Math.abs(next.x - attractPoint.x) < attrViewWidth / 2 && Math.abs(next.y - attractPoint.y) < attrViewHeight / 2)) {
+                    next.isRemove = true
+                    iterator.remove()
+                    currentPointSize--
+                    Log.d("ace", "remove")
+                }
             }
         } catch (e: Exception) {
             //忽略异常
         } finally {
             //释放资源
-            canvas.restoreToCount(save)
             unlockCanvasAndPost(canvas)
         }
     }
 
-    fun setAttrPoint(p: Point){
+    fun setAttrPoint(p: Point) {
         attractPoint = p
     }
 
@@ -129,8 +149,8 @@ class AttractParticlesView(context: Context?, attrs: AttributeSet?) : TextureVie
         return false
     }
 
-    fun Any.log(){
-        Log.d("lucas",this.toString())
+    fun Any.log() {
+        Log.d("lucas", this.toString())
     }
 
 }

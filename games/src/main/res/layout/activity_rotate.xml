@@ -8,13 +8,38 @@
     android:orientation="vertical"
     tools:context=".model.rotate.RotateActivity">
 
-    <com.heid.games.widget.CircleRunView
-        android:id="@+id/v_rotate_view"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@mipmap/ic_rotate_path" />
+
+        <RelativeLayout
+            android:id="@+id/v_ball"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="9dp"
+            android:layout_marginRight="9dp"
+            android:layout_marginTop="24dp"
+            >
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_rotate_ball" />
+        </RelativeLayout>
+
+    </RelativeLayout>
 
     <ImageView
+        android:id="@+id/v_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_rotate_start_bt" />

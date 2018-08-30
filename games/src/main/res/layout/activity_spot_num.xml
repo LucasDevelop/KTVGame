@@ -80,11 +80,11 @@
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
-                android:layout_margin="10dp"
+                android:layout_margin="9dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/shape_spot_line"
-                android:padding="15dp">
+                android:padding="13dp">
 
                 <TextView
                     android:id="@+id/v_num"

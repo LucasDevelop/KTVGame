@@ -2,18 +2,19 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/v_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@mipmap/ic_draw_bg"
+    android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:id="@+id/v_bg"
     tools:context=".model.draw.DrawActivity">
 
-    <LinearLayout
-        android:layout_marginLeft="10dp"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -27,15 +28,24 @@
             android:id="@+id/v_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/v_back"
             android:text="大家来抽签"
             android:textColor="@android:color/white" />
-    </LinearLayout>
 
-   <FrameLayout
-       android:id="@+id/v_content"
-       android:layout_width="match_parent"
-       android:layout_height="match_parent">
+        <FrameLayout
+            android:id="@+id/v_right_container"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true" />
+    </RelativeLayout>
 
-   </FrameLayout>
+    <FrameLayout
+        android:id="@+id/v_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </FrameLayout>
 </LinearLayout>

@@ -7,6 +7,8 @@
         <item name="colorControlHighlight">@color/yellows</item>
         <item name="colorButtonNormal">@color/yellows2</item>
     </style>
-    <style name="TranslucentTheme" parent="AppTheme">
+    <style name="TranslucentTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowTranslucentNavigation">true</item>
     </style>
 </resources>

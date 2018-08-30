@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+
+    <!--详情见博客：https://www.jianshu.com/p/121bbb07cb07-->
+    <!--name 属性和 path 属性必填， name 表示共享文件的名字， path 代表文件路径。-->
+    <!--files-path 代表文件位于手机内部存储空间，访问效果如同 Context.getFilesDir()；-->
+    <!--它对应Context.getFilesDir返回的路径：eg:"/data/data/com.jph.simple/files"-->
+    <files-path
+        name="."
+        path="image" />
+    <!--cache-path 代表文件位于手机内部缓存空间，访问效果如同 getCacheDir()。-->
+    <!--它对应getCacheDir返回的路径：eg:“/data/data/com.jph.simple/cache”-->
+    <cache-path
+        name="."
+        path="image" />
+    <!--external-path 代表文件位于手机外部存储空间，访问效果如同 Environment.getExternalStorageDirectory()；-->
+    <!--它对应Environment.getExternalStorageDirectory返回的路径：eg:"/storage/emulated/0"-->
+    <external-path
+        name="file"
+        path="heyding" />
+    <!--它对应Context#getExternalFilesDir(String) Context.getExternalFilesDir(null)返回的路径。eg:"/storage/emulated/0/Android/data/com.jph.simple/files"-->
+    <external-files-path
+        name="."
+        path="image" />
+    <!--它对应Context.getExternalCacheDir()返回的路径。eg:"/storage/emulated/0/Android/data/com.jph.simple/cache"-->
+    <external-cache-path
+        name="."
+        path="image" />
+
+
+</paths>

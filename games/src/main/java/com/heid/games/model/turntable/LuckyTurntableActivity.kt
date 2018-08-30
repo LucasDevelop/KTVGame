@@ -36,8 +36,7 @@ class LuckyTurntableActivity : BaseGameActivity() {
         //默认加载第一个
         v_lucky.setOptionTexts(list[currentScene].options)
         iv_start.setImageResource(list[currentScene].startBtRes)
-        //开启bgm
-        MusicUtil.playMusic(this,R.raw.turntabe)
+
         v_lucky.setOnSpanRollListener {
             if (it == 0.toDouble()) {
                 //停下来释放按键
@@ -49,7 +48,7 @@ class LuckyTurntableActivity : BaseGameActivity() {
                         //判断是否静音
                         if (SystemUtil.isMute(this))
                         //开启震动
-                            SystemUtil.startSingleVibrator(this,1000)
+                            SystemUtil.startSingleVibrator(this, 1000)
                     }
             }
         }
@@ -57,8 +56,11 @@ class LuckyTurntableActivity : BaseGameActivity() {
         iv_start.setOnClickListener {
             //判断是否静音
             if (SystemUtil.isMute(this))
-                //开启震动
+            //开启震动
                 SystemUtil.startVibrator(this, 1)
+            else
+            //开启bgm
+                MusicUtil.playMusic(this, R.raw.turntabe)
             isRun = true
             //锁住按键
             iv_start.isEnabled = false

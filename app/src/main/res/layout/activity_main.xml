@@ -46,4 +46,17 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="有胆量就转" />
+
+    <Button
+        android:id="@+id/v_under"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="谁是卧底" />
+    <ImageView
+        android:id="@+id/v_img"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
 </LinearLayout>

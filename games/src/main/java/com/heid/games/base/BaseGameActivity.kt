@@ -1,5 +1,6 @@
 package com.heid.games.base
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.support.annotation.DrawableRes
@@ -10,7 +11,9 @@ import android.widget.FrameLayout
 import android.widget.Toast
 import com.blankj.utilcode.util.Utils
 import com.heid.games.R
+import com.heid.games.utils.FuncUtil
 import kotlinx.android.synthetic.main.activity_base.*
+import java.util.ArrayList
 
 /**
  * @package     com.heid.games.base
@@ -18,15 +21,7 @@ import kotlinx.android.synthetic.main.activity_base.*
  * @date        2018/8/24
  * @des
  */
-abstract class BaseGameActivity : AppCompatActivity() {
-
-    //activity生命周期监听
-    var onAcDestroy: () -> Unit = {}
-
-    override fun onDestroy() {
-        onAcDestroy()
-        super.onDestroy()
-    }
+abstract class BaseGameActivity : AppCompatActivity(),FuncUtil{
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,17 +32,28 @@ abstract class BaseGameActivity : AppCompatActivity() {
         v_back.setOnClickListener {
             finish()
         }
+        if (getRightView() != 0) {
+            v_right_container.addView(LayoutInflater.from(this).inflate(getRightView(), null))
+        }
     }
 
     fun setTitle(msg: String) {
         v_title.text = msg
     }
 
-    fun setBg(@DrawableRes bgRes:Int){
+    fun setBg(@DrawableRes bgRes: Int) {
         v_bg.setBackgroundResource(bgRes)
     }
 
+    open fun getRightView(): Int = 0
+
     abstract fun getContentLayoutId(): Int
+
+    val onAcResultList = ArrayList<(requestCode: Int, resultCode: Int, data: Intent?) -> Unit>()
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        onAcResultList.forEach { it(requestCode, resultCode, data) }
+    }
 
     fun String.showToast() {
         Toast.makeText(this@BaseGameActivity, this, Toast.LENGTH_SHORT).show()

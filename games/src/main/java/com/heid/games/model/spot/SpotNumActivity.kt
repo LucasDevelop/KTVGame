@@ -41,7 +41,9 @@ class SpotNumActivity : BaseGameActivity() {
                 }
                 val intArray = IntArray(2)
                 v_start.getLocationInWindow(intArray)
-                v_attractView.setAttrPoint(Point(intArray[0], intArray[1]))
+                v_attractView.attrViewWidth = v_start.measuredWidth
+                v_attractView.attrViewHeight = v_start.measuredHeight
+//                v_attractView.setAttrPoint(Point(intArray[0], intArray[1]))
             }
         })
         arrayOf(v_start_view, v_num_view, v_show_bt).forEach {
