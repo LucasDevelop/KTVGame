@@ -28,8 +28,14 @@ class UndercoverActivity : BaseGameActivity() {
                     v_plus -> v_brightness.progress += 1
                     v_reduce -> v_brightness.progress -= 1
                     v_double_play -> {
+                        val intent = Intent(this, SetupActivity::class.java)
+                        intent.putExtra("person_count", 8)
+                        startActivity(intent)
                     }
                     v_single_play -> {
+                        val intent = Intent(this, SetupActivity::class.java)
+                        intent.putExtra("person_count", 4)
+                        startActivity(intent)
                     }
                     v_start -> {
                         val intent = Intent(this, SetupActivity::class.java)
@@ -43,7 +49,7 @@ class UndercoverActivity : BaseGameActivity() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 val progress = p1 + 4
                 v_join_person.text = "参与人数$progress"
-                v_under_person.text = "卧底人数${GameConfig.personTable.get(p1)}"
+                v_under_person.text = "卧底人数${GameConfig.personTable.getValue(progress)}"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {

@@ -13,7 +13,7 @@
         android:layout_height="50dp"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:text="大家一起来抽签" />
+        android:text="扫雷大作战" />
 
     <Button
         android:id="@+id/v_lucky"
@@ -54,9 +54,11 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="谁是卧底" />
-    <ImageView
-        android:id="@+id/v_img"
-        android:src="@mipmap/ic_launcher"
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
+    <Button
+        android:id="@+id/v_close_eyes"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="天黑请闭眼" />
 </LinearLayout>

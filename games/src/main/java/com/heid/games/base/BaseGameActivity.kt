@@ -3,6 +3,7 @@ package com.heid.games.base
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.os.Handler
 import android.support.annotation.DrawableRes
 import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
@@ -22,6 +23,7 @@ import java.util.ArrayList
  * @des
  */
 abstract class BaseGameActivity : AppCompatActivity(),FuncUtil{
+    val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

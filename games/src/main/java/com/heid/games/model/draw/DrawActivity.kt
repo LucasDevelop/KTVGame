@@ -16,7 +16,7 @@ import java.util.*
  * @author      lucas
  * @date        2018/8/24
  * @version     V1.0
- * @describe    大家来抽签
+ * @describe    扫雷大作战
  */
 
 class DrawActivity : BaseGameActivity() {
@@ -28,7 +28,7 @@ class DrawActivity : BaseGameActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setTitle("大家来抽奖")
+        setTitle("扫雷大作战")
         v_list.layoutManager = GridLayoutManager(this, 4)
         v_list.adapter = mAdapter
         mAdapter.setBoomPosition(mBoomPosition)
