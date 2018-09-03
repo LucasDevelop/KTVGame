@@ -1,16 +1,9 @@
 package com.heid.game
 
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
-import android.widget.ImageView
-import com.blankj.utilcode.util.ImageUtils
-import com.bumptech.glide.Glide
 import com.heid.games.base.BaseGameActivity
-import com.heid.games.model.closeeyes.CloseEyesActivity
+import com.heid.games.model.closeeyes.EyesActivity
 import com.heid.games.model.rotate.RotateActivity
 import com.heid.games.model.crowd.CrowdNumActivity
 import com.heid.games.model.draw.DrawActivity
@@ -18,8 +11,6 @@ import com.heid.games.model.spot.SpotNumActivity
 import com.heid.games.model.turntable.LuckyTurntableActivity
 import com.heid.games.model.undercover.UndercoverActivity
 import kotlinx.android.synthetic.main.activity_main.*
-import java.io.File
-import kotlin.concurrent.thread
 
 class MainActivity : BaseGameActivity() {
     override fun getContentLayoutId(): Int = R.layout.activity_main
@@ -36,7 +27,7 @@ class MainActivity : BaseGameActivity() {
                     v_crowd_num -> startActivity(Intent(this, CrowdNumActivity::class.java))
                     v_rotate -> startActivity(Intent(this, RotateActivity::class.java))
                     v_under -> startActivity(Intent(this, UndercoverActivity::class.java))
-                    v_close_eyes -> startActivity(Intent(this, CloseEyesActivity::class.java))
+                    v_close_eyes -> startActivity(Intent(this, EyesActivity::class.java))
                 }
             }
         }

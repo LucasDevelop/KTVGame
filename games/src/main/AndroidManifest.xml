@@ -51,7 +51,14 @@
         <activity
             android:name=".model.undercover.VictoryActivity"
             android:theme="@style/TranslucentTheme" />
-        <activity android:name=".model.closeeyes.CloseEyesActivity"
+        <activity
+            android:name=".model.closeeyes.EyesActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity android:name=".model.closeeyes.EyesSetupActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity android:name=".model.closeeyes.PreparePlayActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity android:name=".model.closeeyes.EyesPlayActivity"
             android:theme="@style/TranslucentTheme" />
     </application>
 

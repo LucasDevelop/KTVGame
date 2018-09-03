@@ -49,7 +49,7 @@ class UndercoverActivity : BaseGameActivity() {
             override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
                 val progress = p1 + 4
                 v_join_person.text = "参与人数$progress"
-                v_under_person.text = "卧底人数${GameConfig.personTable.getValue(progress)}"
+                v_under_person.text = "卧底人数${GameConfig.underPersonTable.getValue(progress)}"
             }
 
             override fun onStartTrackingTouch(p0: SeekBar?) {

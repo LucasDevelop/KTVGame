@@ -57,7 +57,7 @@ class SetupActivity : BaseGameActivity() {
         super.onCreate(savedInstanceState)
         setBg(R.mipmap.ic_under_setup_bg)
         personCount = intent.getIntExtra("person_count", 0)
-        val underCount = GameConfig.personTable.getValue(personCount)
+        val underCount = GameConfig.underPersonTable.getValue(personCount)
         v_join_count.text = personCount.toString()
         v_under_count.text = underCount.toString()
         identitys = initIdentity(personCount, underCount)

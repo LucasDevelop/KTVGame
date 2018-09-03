@@ -27,6 +27,11 @@ import java.io.File
  */
 interface FuncUtil {
 
+    fun Int.repeat(func:(i:Int)->Unit){
+        for ( i in 0 until this)
+            func(i)
+    }
+
     fun FragmentActivity.openCamera(callback: (bitmap: Bitmap, path: String) -> Unit, imageName: String = "camera_${System.currentTimeMillis()}") {
         RxPermissions(this)
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE,

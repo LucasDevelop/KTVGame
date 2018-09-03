@@ -1,58 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@android:id/background" android:drawable="@drawable/shape_item">
+    <item android:id="@android:id/background" android:drawable="@mipmap/ic_eyes_progress1">
 
     </item>
-    <item android:id="@android:id/secondaryProgress">
-        <clip>
-            <layer-list>
-                <item>
-                    <shape>
-                        <corners android:radius="5dp" />
-                        <stroke
-                            android:width="2dp"
-                            android:color="#53a5cf" />
-                        <solid android:color="#90c4d9" />
-                    </shape>
-                </item>
-                <item>
-                    <shape android:shape="line">
-                        <corners android:radius="5dp" />
-                        <stroke
-                            android:width="30dp"
-                            android:color="#53a5cf"
-                            android:dashGap="5sp"
-                            android:dashWidth="2dp" />
-                    </shape>
-                </item>
-            </layer-list>
-        </clip>
-    </item>
-    <item android:id="@android:id/progress">
-        <clip>
-            <layer-list>
-                <item>
-                    <shape>
-                        <stroke
-                            android:width="2dp"
-                            android:color="#53a5cf" />
-                        <corners android:radius="5dp" />
-                        <solid android:color="#ff0000" />
-                    </shape>
-                </item>
-                <item>
-                    <shape android:shape="line">
-                        <corners android:radius="5dp" />
-                        <stroke
-                            android:width="30dp"
-                            android:color="#53a5cf"
-                            android:dashGap="5sp"
-                            android:dashWidth="2dp" />
-                    </shape>
-                </item>
-            </layer-list>
+    <item android:id="@android:id/secondaryProgress" android:drawable="@mipmap/ic_eyes_progress2">
 
-        </clip>
+    </item>
+    <item android:id="@android:id/progress" android:drawable="@mipmap/ic_eyes_progress2">
+
     </item>
 
 </layer-list>

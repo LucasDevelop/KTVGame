@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.blankj.utilcode.util.Utils
 import com.heid.games.R
 import com.heid.games.utils.FuncUtil
+import com.heid.games.utils.ViewUtil
 import kotlinx.android.synthetic.main.activity_base.*
 import java.util.ArrayList
 
@@ -22,7 +23,7 @@ import java.util.ArrayList
  * @date        2018/8/24
  * @des
  */
-abstract class BaseGameActivity : AppCompatActivity(),FuncUtil{
+abstract class BaseGameActivity : AppCompatActivity(),FuncUtil,ViewUtil{
     val mHandler = Handler()
 
     override fun onCreate(savedInstanceState: Bundle?) {
