@@ -44,6 +44,7 @@ class EyesPersonAdapter : BaseQuickAdapter<EyesIdentity, EyesPersonAdapter.Under
             }
         })
         helper.setGone(R.id.v_vote_text,isShowIdentity)
+        helper.setText(R.id.v_vote_text,item.identity)
     }
 
 

@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import com.heid.games.base.BaseGameActivity
 import com.heid.games.model.closeeyes.EyesActivity
+import com.heid.games.model.closeeyes.EyesPlayActivity
+import com.heid.games.model.closeeyes.bean.EyesIdentity
 import com.heid.games.model.rotate.RotateActivity
 import com.heid.games.model.crowd.CrowdNumActivity
 import com.heid.games.model.draw.DrawActivity
@@ -27,7 +29,16 @@ class MainActivity : BaseGameActivity() {
                     v_crowd_num -> startActivity(Intent(this, CrowdNumActivity::class.java))
                     v_rotate -> startActivity(Intent(this, RotateActivity::class.java))
                     v_under -> startActivity(Intent(this, UndercoverActivity::class.java))
-                    v_close_eyes -> startActivity(Intent(this, EyesActivity::class.java))
+                    v_close_eyes -> {
+                        EyesPlayActivity.launch(this, arrayListOf(
+                                EyesIdentity(1,"杀手","/storage/emulated/0/1536028922019.jpg"),
+                                EyesIdentity(2,"警察","/storage/emulated/0/1536028922019.jpg"),
+                                EyesIdentity(3,"平民","/storage/emulated/0/1536028922019.jpg"),
+                                EyesIdentity(4,"平民","/storage/emulated/0/1536028922019.jpg"),
+                                EyesIdentity(5,"平民","/storage/emulated/0/1536028922019.jpg")
+                        ))
+//                        startActivity(Intent(this, EyesActivity::class.java))
+                    }
                 }
             }
         }

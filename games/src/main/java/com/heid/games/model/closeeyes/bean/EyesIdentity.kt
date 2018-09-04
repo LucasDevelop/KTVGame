@@ -9,4 +9,5 @@ import java.io.Serializable
  * @des
  */
 class EyesIdentity (val index :Int ,val identity:String,val icon:String):Serializable{
+    var isAlive = true//是否存活
 }

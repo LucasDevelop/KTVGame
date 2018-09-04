@@ -3,6 +3,7 @@ package com.heid.games.utils
 import android.app.Activity
 import android.media.audiofx.BassBoost
 import android.os.Looper
+import android.view.MotionEvent
 import android.view.View
 
 /**
@@ -38,5 +39,16 @@ interface ViewUtil {
                 click(p0, clickCount++ % 2 == 0)
             }
         })
+    }
+
+    //按压事件
+    fun View.setonPressListener(onPress:(View,isPress:Boolean)->Unit){
+        setOnTouchListener { view, motionEvent ->
+            when (motionEvent.action) {
+                MotionEvent.ACTION_DOWN -> onPress(this,true)
+                MotionEvent.ACTION_UP -> onPress(this,false)
+            }
+            return@setOnTouchListener true
+        }
     }
 }

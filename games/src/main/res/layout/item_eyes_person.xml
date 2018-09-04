@@ -17,23 +17,23 @@
             android:layout_margin="5dp"
             app:cardCornerRadius="0dp"
             app:cardElevation="5dp"
+            app:cardBackgroundColor="#432ab6"
             app:cardUseCompatPadding="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="3dp"
-                android:background="#432ab6">
+                android:layout_margin="3dp">
 
                 <ImageView
                     android:id="@+id/v_icon"
                     android:layout_width="70dp"
                     android:layout_height="70dp"
-                    android:rotation="-90" />
+                    />
 
                 <TextView
                     android:id="@+id/v_vote_text"
-                    android:layout_width="match_parent"
+                    android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentBottom="true"
                     android:background="#88432ab6"

@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     tools:context=".model.closeeyes.EyesPlayActivity">
-
-    <include layout="@layout/layout_eyes_lines"/>
-    <include layout="@layout/layout_eyes_select_person"/>
+    <FrameLayout
+        android:id="@+id/v_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </FrameLayout>

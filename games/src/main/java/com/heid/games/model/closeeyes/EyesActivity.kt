@@ -41,5 +41,7 @@ class EyesActivity : BaseGameActivity() {
         v_start.setOnClickListener {
             EyesSetupActivity.launch(this, personCount)
         }
+        v_du.setOnClickListener { v_seek.progress = v_seek.progress - 1 }
+        v_add.setOnClickListener { v_seek.progress = v_seek.progress + 1 }
     }
 }
