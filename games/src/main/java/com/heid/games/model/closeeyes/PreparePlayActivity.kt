@@ -8,6 +8,7 @@ import com.heid.games.R
 import com.heid.games.base.BaseGameActivity
 import com.heid.games.model.closeeyes.adapter.EyesPersonAdapter
 import com.heid.games.model.closeeyes.bean.EyesIdentity
+import com.heid.games.model.closeeyes.bean.EyesIdentityBean
 import kotlinx.android.synthetic.main.activity_prepare_play.*
 
 /**
@@ -20,10 +21,10 @@ import kotlinx.android.synthetic.main.activity_prepare_play.*
 class PreparePlayActivity : BaseGameActivity() {
     override fun getContentLayoutId(): Int = R.layout.activity_prepare_play
     val mAdapter = EyesPersonAdapter()
-    val person: ArrayList<EyesIdentity> by lazy { intent.getSerializableExtra("person") as ArrayList<EyesIdentity> }
+    val person: ArrayList<EyesIdentityBean> by lazy { intent.getSerializableExtra("person") as ArrayList<EyesIdentityBean> }
 
     companion object {
-        fun launch(activity: BaseGameActivity, person: ArrayList<EyesIdentity>) {
+        fun launch(activity: BaseGameActivity, person: ArrayList<EyesIdentityBean>) {
             val intent = Intent(activity, PreparePlayActivity::class.java)
             intent.putExtra("person", person)
             activity.startActivity(intent)
@@ -36,7 +37,7 @@ class PreparePlayActivity : BaseGameActivity() {
         setTitle("天黑请闭眼")
         v_list.layoutManager = GridLayoutManager(this,Math.ceil(person.size.toDouble() / 4).toInt())
         v_list.adapter= mAdapter
-        mAdapter.setNewData(person)
+        mAdapter.addNewData(person)
         v_show_identity.setChangeClickListener { view, b ->
             mAdapter.isShowIdentity = b
         }

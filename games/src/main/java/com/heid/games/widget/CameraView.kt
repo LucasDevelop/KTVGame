@@ -7,6 +7,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.PixelFormat
 import android.hardware.Camera
+import android.media.ExifInterface
 import android.support.v4.app.FragmentActivity
 import android.util.AttributeSet
 import android.util.Log
@@ -20,6 +21,7 @@ import com.heid.games.model.undercover.ConfirmPersonActivity
 import com.heid.games.model.undercover.bean.PersonInfoBean
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_setup.*
+import java.io.IOException
 import kotlin.concurrent.thread
 
 /**
@@ -97,7 +99,9 @@ class CameraView(context: Context, attrs: AttributeSet) : SurfaceView(context, a
                     val bitmap = ImageUtils.bytes2Bitmap(data)
                     val path = SDCardUtils.getSDCardPaths()[0] + "/" + System.currentTimeMillis() + ".jpg"
                     thread {
-                        val isSave = ImageUtils.save(bitmap, path, Bitmap.CompressFormat.JPEG, true)
+                        //旋转图片角度
+                        val rotate = ImageUtils.rotate(bitmap, 270, 0f, 0f)
+                        val isSave = ImageUtils.save(rotate, path, Bitmap.CompressFormat.JPEG, true)
                         handler.post { onSave(path, isSave) }
                         if (isSave) Log.d("lucas", "头像保存成功 $path")
                     }

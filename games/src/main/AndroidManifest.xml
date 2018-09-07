@@ -3,12 +3,18 @@
     package="com.heid.games">
 
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
+    <!-- 设置允许改变配置信息的权�?-->
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
     <application>
 
@@ -54,11 +60,25 @@
         <activity
             android:name=".model.closeeyes.EyesActivity"
             android:theme="@style/TranslucentTheme" />
-        <activity android:name=".model.closeeyes.EyesSetupActivity"
+        <activity
+            android:name=".model.closeeyes.EyesSetupActivity"
             android:theme="@style/TranslucentTheme" />
-        <activity android:name=".model.closeeyes.PreparePlayActivity"
+        <activity
+            android:name=".model.closeeyes.PreparePlayActivity"
             android:theme="@style/TranslucentTheme" />
-        <activity android:name=".model.closeeyes.EyesPlayActivity"
+        <activity
+            android:name=".model.closeeyes.EyesPlayActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name=".model.closeeyes.EyesWinActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name=".model.pointguess.PointGuessActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name=".model.pointguess.PlayGameActivity"
+            android:screenOrientation="landscape" />
+        <activity android:name=".model.dice.DiceActivity"
             android:theme="@style/TranslucentTheme" />
     </application>
 

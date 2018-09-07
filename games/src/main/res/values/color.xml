@@ -6,4 +6,8 @@
     <color name="blue">#6b58ff</color>
     <color name="dialog_blue">#18348f</color>
     <color name="eyes_text">#53a5cf</color>
+    <color name="pg_bg_normal">#97a2caf5</color>
+    <color name="pg_bg_right">#97a2e7f5</color>
+    <color name="pg_bg_skip">#97f5d9a2</color>
+    <color name="pg_bg_over">#97f5bfa2</color>
 </resources>

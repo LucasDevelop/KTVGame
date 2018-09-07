@@ -9,19 +9,21 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import com.heid.games.R
+import com.heid.games.model.closeeyes.EyesActivity
 import com.heid.games.model.closeeyes.EyesPlayActivity
 import com.heid.games.model.closeeyes.bean.EyesIdentity
+import com.heid.games.model.closeeyes.bean.EyesIdentityBean
 import com.heid.games.utils.ViewUtil
 import kotlinx.android.synthetic.main.layout_eyes_lines.*
 
 /**
- * @package     com.heid.games.model.closeeyes.fragment
+ * @package     com.heid.games.model.closeeyes.fragment_pg_gameover
  * @author      lucas
  * @date        2018/9/4
  * @des
  */
 class EyesLinesFragment : Fragment(), ViewUtil {
-    val person: ArrayList<EyesIdentity> by lazy { arguments!!.getSerializable("person") as ArrayList<EyesIdentity> }
+    val person: ArrayList<EyesIdentityBean> by lazy { (activity as EyesPlayActivity).person }
     val mActivity: EyesPlayActivity by lazy { activity as EyesPlayActivity }
     lateinit var rootView: View
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -56,6 +58,18 @@ class EyesLinesFragment : Fragment(), ViewUtil {
             mActivity.showSelect()
             mActivity.mSelectF.refreshView()
         }
+        //下一轮
+        v_lines_next.setOnClickListener {
+            mActivity.currentProgress = 0
+            mActivity.showLines()
+            mActivity.mLinesF.sayLines()
+        }
+        //平安夜
+        v_lines_peace_day.setOnClickListener {
+            mActivity.currentProgress++
+            mActivity.showSelect()
+            mActivity.mSelectF.refreshView()
+        }
     }
 
     //法官台词
@@ -80,7 +94,15 @@ class EyesLinesFragment : Fragment(), ViewUtil {
         if (mActivity.currentProgress == 5) {
             v_lines_vote_bt.onlyShowBt()
             v_lines_peace_day.show()
-            lines = arrayOf("x号是平民，有遗言","从死者左边第一个人\n开始发言")
+            //找出最后一个死亡的人
+            val diePerson = mActivity.lastKill
+            lines = arrayOf("${diePerson?.index}号是${diePerson?.identity}，有遗言", "从死者左边第一个人\n开始发言")
+        }
+        if (mActivity.currentProgress == 7) {
+            v_lines_next.onlyShowBt()
+            //找出最后一个死亡的人
+            val diePerson = mActivity.lastKill
+            lines = arrayOf("${diePerson?.index}号是${diePerson?.identity}，有遗言")
         }
 
         lines.forEach {
@@ -93,7 +115,7 @@ class EyesLinesFragment : Fragment(), ViewUtil {
     }
 
     fun View.onlyShowBt() {
-        arrayOf(v_kill, v_check_person, v_show_identity, v_lines_complete, v_hint_kill, v_lines_continue,v_lines_vote_bt,v_lines_peace_day).forEach {
+        arrayOf(v_kill, v_check_person, v_show_identity, v_lines_complete, v_hint_kill, v_lines_continue, v_lines_vote_bt, v_lines_peace_day, v_lines_next).forEach {
             it.visibility = if (this == it) View.VISIBLE else View.GONE
         }
     }

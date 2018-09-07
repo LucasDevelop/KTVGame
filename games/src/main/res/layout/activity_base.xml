@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/v_bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/ic_draw_bg"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
     tools:context=".model.draw.DrawActivity">
-
+    <ImageView
+    android:id="@+id/v_bg"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_draw_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     <RelativeLayout
+        android:id="@+id/v_tool"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
@@ -18,11 +21,23 @@
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
-        <ImageView
+        <RelativeLayout
             android:id="@+id/v_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/ic_draw_back" />
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/v_back_bg"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:background="@drawable/shape_back_d_bg" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@mipmap/ic_back_icon" />
+        </RelativeLayout>
 
         <TextView
             android:id="@+id/v_title"
@@ -34,18 +49,28 @@
             android:text="大家来抽签"
             android:textColor="@android:color/white" />
 
-        <FrameLayout
-            android:id="@+id/v_right_container"
-            android:layout_alignParentRight="true"
+        <ImageView
+            android:id="@+id/v_game_rule"
+            android:visibility="gone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="15dp"
+            android:src="@mipmap/ic_game_rule" />
+
+        <FrameLayout
+            android:id="@+id/v_right_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true" />
     </RelativeLayout>
 
     <FrameLayout
+        android:layout_below="@id/v_tool"
         android:id="@+id/v_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </FrameLayout>
-</LinearLayout>
+</RelativeLayout>

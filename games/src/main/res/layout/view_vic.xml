@@ -21,8 +21,7 @@
             android:layout_marginRight="3dp"
             android:layout_marginTop="3dp"
             android:rotation="-90"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_tem" />
+            android:scaleType="fitXY"/>
 
         <TextView
             android:id="@+id/v_num"

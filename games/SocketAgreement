@@ -1,0 +1,7 @@
+Tip:> 客户端发到服务端 , < 服务端发到客户端
+action 相当于接口名称
+
+>连接服务器
+{"action":0x1,"msg":"连接服务器","data":{"user_id":1,"username":"lucas","icon":"htttp://xxxxxx"}}
+<连接服务器
+{"action":0x1,"status":0/1,"msg":"连接成功/失败","data":{"user_id":1,"username":"lucas","icon":"htttp://xxxxxx"}}

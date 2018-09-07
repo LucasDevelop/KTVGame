@@ -8,6 +8,7 @@ import com.heid.games.R
 import com.heid.games.base.BaseGameActivity
 import com.heid.games.config.GameConfig
 import com.heid.games.model.closeeyes.bean.EyesIdentity
+import com.heid.games.model.closeeyes.bean.EyesIdentityBean
 import kotlinx.android.synthetic.main.activity_eyes_setup.*
 import java.util.*
 import kotlin.collections.ArrayList
@@ -37,7 +38,7 @@ class EyesSetupActivity : BaseGameActivity() {
         list
     }
     //确认后的身份
-    val comfirmIdentity: ArrayList<EyesIdentity> = ArrayList()
+    val comfirmIdentity: ArrayList<EyesIdentityBean> = ArrayList()
 
     companion object {
         fun launch(activity: BaseGameActivity, personCount: Int) {

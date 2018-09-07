@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.heid.games.R
 import com.heid.games.model.closeeyes.bean.EyesIdentity
+import com.heid.games.model.closeeyes.bean.EyesIdentityBean
 import com.heid.games.model.undercover.bean.PersonInfoBean
 import com.lucas.frame.adapter.BaseQuickAdapter
 import com.lucas.frame.adapter.BaseViewHolder
@@ -39,14 +40,20 @@ class EyesPersonAdapter : BaseQuickAdapter<EyesIdentity, EyesPersonAdapter.Under
                     imageView.viewTreeObserver.removeOnGlobalLayoutListener(this)
                 }
                 val imgW = imageView.measuredWidth
-                val bitmap = ImageUtils.scale(BitmapFactory.decodeFile(item.icon), imgW, imgW, true)
-                imageView.setImageBitmap(bitmap)
+                imageView.setImageBitmap(item.getIcon(imgW,imgW))
             }
         })
         helper.setGone(R.id.v_vote_text,isShowIdentity)
         helper.setText(R.id.v_vote_text,item.identity)
     }
 
+    fun addNewData(d:ArrayList<EyesIdentityBean>){
+        val list = ArrayList<EyesIdentity>()
+        d.forEach {
+            list.add(EyesIdentity(it.index, it.identity, it.icon))
+        }
+        setNewData(list)
+    }
 
     class UnderHolder(view: View) : BaseViewHolder(view) {
 

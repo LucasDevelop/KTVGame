@@ -54,6 +54,7 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="谁是卧底" />
+
     <Button
         android:id="@+id/v_close_eyes"
         android:layout_width="match_parent"
@@ -61,4 +62,20 @@
         android:layout_margin="10dp"
         android:gravity="center"
         android:text="天黑请闭眼" />
+
+    <Button
+        android:id="@+id/v_point_guess"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="你画我猜" />
+
+    <Button
+        android:id="@+id/v_dice"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:text="吹牛" />
 </LinearLayout>

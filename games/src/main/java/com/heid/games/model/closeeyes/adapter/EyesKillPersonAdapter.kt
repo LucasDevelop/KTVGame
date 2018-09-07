@@ -12,6 +12,7 @@ import com.blankj.utilcode.util.ImageUtils
 import com.blankj.utilcode.util.SizeUtils
 import com.heid.games.R
 import com.heid.games.model.closeeyes.bean.EyesIdentity
+import com.heid.games.model.closeeyes.bean.EyesIdentityBean
 import com.heid.games.model.undercover.bean.PersonInfoBean
 import com.lucas.frame.adapter.BaseQuickAdapter
 import com.lucas.frame.adapter.BaseViewHolder
@@ -42,14 +43,18 @@ class EyesKillPersonAdapter : BaseQuickAdapter<EyesIdentity, EyesKillPersonAdapt
             field = value
             notifyDataSetChanged()
         }
+    //投票
+    var vote: Int = -1
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun convert(helper: UnderHolder, item: EyesIdentity) {
         helper.setText(R.id.v_num, item.index.toString())
         helper.getView<View>(R.id.v_num).isEnabled = true
         val imageView = helper.getView<ImageView>(R.id.v_icon)
-        val dp2px = SizeUtils.dp2px(70f)
-        val bitmap = ImageUtils.scale(BitmapFactory.decodeFile(item.icon), dp2px, dp2px, true)
-        imageView.setImageBitmap(bitmap)
+        imageView.setImageBitmap(item.getIcon())
         helper.setGone(R.id.v_vote_text, isShowIdentity)
         helper.setText(R.id.v_vote_text, item.identity)
         //显示被杀过的人的身份
@@ -80,8 +85,23 @@ class EyesKillPersonAdapter : BaseQuickAdapter<EyesIdentity, EyesKillPersonAdapt
                 "平民" -> imageView.setImageResource(R.mipmap.ic_eyes_common_on)
             }
         }
+        //显示投票结果
+        if (item.index == vote && item.isAlive) {
+            helper.setGone(R.id.v_vote_text, true)
+            when (item.identity) {
+                "警察" -> imageView.setImageResource(R.mipmap.ic_eyes_police_on)
+                "杀手" -> imageView.setImageResource(R.mipmap.ic_eyes_killer_on)
+                "平民" -> imageView.setImageResource(R.mipmap.ic_eyes_common_on)
+            }
+        }
     }
-
+    fun addNewData(d:ArrayList<EyesIdentityBean>){
+        val list = ArrayList<EyesIdentity>()
+        d.forEach {
+            list.add(EyesIdentity(it.index, it.identity, it.icon))
+        }
+        setNewData(list)
+    }
 
     class UnderHolder(view: View) : BaseViewHolder(view) {
 
