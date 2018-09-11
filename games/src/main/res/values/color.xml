@@ -10,4 +10,5 @@
     <color name="pg_bg_right">#97a2e7f5</color>
     <color name="pg_bg_skip">#97f5d9a2</color>
     <color name="pg_bg_over">#97f5bfa2</color>
+    <color name="pop_bg">#45000000</color>
 </resources>

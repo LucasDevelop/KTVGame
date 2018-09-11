@@ -6,82 +6,59 @@ import com.google.gson.JsonParser
 import com.heid.games.config.GameConfig
 import com.heid.games.socket.bean.BaseBean
 import com.heid.games.socket.bean.UserInfoBean
-import java.io.*
-import java.net.*
+import java.io.InputStream
+import java.io.OutputStream
+import java.net.Socket
 import java.util.concurrent.Executors
 import kotlin.concurrent.thread
 
 /**
- * @package     com.heid.games.socketServer
+ * @package     com.heid.games.socket
  * @author      lucas
- * @date        2018/9/7
- * @des   socket服务端
+ * @date        2018/9/8
+ * @des     socket 客户端
  */
-object TCPServer {
-    //端口
-    var prot = GameConfig.SOCKET_PORT
-    private var socketServer: ServerSocket? = null
-    //连接池
-    val connPoll = ArrayList<ConnTask>()
-    var isOpen = false//服务器状态
+object TCPClient {
     private val gson = Gson()
+    private var client: ConnTask? = null
+    var isOpen = false
     //线程池
     val threadPoll = Executors.newCachedThreadPool()
-    //服务器创建失败
-    var onCreateFail: () -> Unit = {}
+    var prot = GameConfig.SOCKET_PORT
 
-    //服务器初始化
-    fun initServer() {
+    //连接服务器
+    fun connServer(ip: String): Boolean {
         try {
-            socketServer = ServerSocket()
-            socketServer?.reuseAddress = true
-            socketServer?.bind(InetSocketAddress(prot))
+            val socket = Socket(ip, prot)
             isOpen = true
-            "初始化服务器".p()
-            while (isOpen) {
-                "run".p()
-                Thread.sleep(20)
-                val socket = socketServer?.accept() ?: continue
-                val task = ConnTask(socket)
-                task.start()
-                connPoll.add(task)
-                "有新的连接".p()
-            }
-        } catch (e: BindException) {//端口被占用
-            e.printStackTrace()
-            onCreateFail()
-            //出口
-            if (prot >= 9999) {
-                return
-            }
-            //使用新端口
-            prot++
-            initServer()
+            client = ConnTask(socket)
+            client?.start()
+            return true
+            "链接服务器成功 ip:${ip},prot:${prot}".p()
         } catch (e: Exception) {
             e.printStackTrace()
-        } finally {
-            try {
-                socketServer?.close()
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
+            "链接服务器失败".p()
+            return false
         }
     }
 
-    //与客户端连接任务
+    //获取客户端
+    fun getClient(): ConnTask {
+        return client!!
+    }
+
+    //与服务端连接任务
     class ConnTask(val socket: Socket) : Thread() {
         private val reader: InputStream by lazy { socket.getInputStream() }
         private val writer: OutputStream by lazy { socket.getOutputStream() }
         private var threadName: String = ""
-        var tag:Any? = null //标记
-        var userInfo:UserInfoBean<Any?>?=null//用户信息
+        var userInfo: UserInfoBean?=null//用户信息
 
         override fun run() {
             threadName = Thread.currentThread().name
-            "run ${Thread.currentThread().name}".p()
-            while (isOpen) {
+            while (TCPClient.isOpen) {
                 //判断连接是否断开
-                if (socket.isClosed) {//连接断开--用户退出
+                if (socket.isClosed) {//连接断开--用户掉线
                     onUserOutLine()
                 } else {
                     //开始读取数据
@@ -116,7 +93,7 @@ object TCPServer {
                 val json = gson.toJson(bean)
                 writer.write(json.toByteArray())
                 writer.flush()
-                "$threadName 发送数据:$json".p()
+                "${threadName}发送数据:$json".p()
             }
         }
 
@@ -130,19 +107,20 @@ object TCPServer {
 
     //取消所有监听
     fun cleatAllListener(){
-        TCPClient.onReceiverSuccess = { action, json, task ->  }
-        TCPClient.onReceiverFail = {}
-        TCPClient.onUserOutLine = {}
+        onReceiverSuccess = {action, json, task ->  }
+        onReceiverFail = {}
+        onUserOutLine = {}
     }
 
-    //关闭服务器
-    fun close() {
+    //停止连接
+    fun stop() {
         isOpen = false
+        client?.socket?.close()
     }
 
-    private fun Any.p() {
-        Log.d("TCPServer", this.toString())
-//        System.out.println("TCPServer:${this}")
+    fun Any.p() {
+        Log.d("TCPClient", this.toString())
+//        System.out.println("TCPClient:${this}")
     }
 
     /**

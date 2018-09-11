@@ -28,6 +28,7 @@ class LuckyTurntableActivity : BaseGameActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setBg(R.mipmap.ic_draw_bg)
         setTitle("幸运大转盘")
         //初始化数据
         list.add(SceneBean(arrayOf("上家喝光", "倒满", "喝一半", "喝光", "喝一口", "干杯", "下家喝光", "倒满", "喝一半", "喝光", "剩一口", "跳过"), R.mipmap.ic_jiuchang_strt))

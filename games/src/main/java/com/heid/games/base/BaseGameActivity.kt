@@ -10,9 +10,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.Window
 import android.widget.FrameLayout
+import android.widget.PopupWindow
 import android.widget.Toast
 import com.blankj.utilcode.util.Utils
+import com.google.gson.Gson
 import com.heid.games.R
+import com.heid.games.pop.RulePopup
 import com.heid.games.utils.FuncUtil
 import com.heid.games.utils.ViewUtil
 import kotlinx.android.synthetic.main.activity_base.*
@@ -26,6 +29,8 @@ import java.util.ArrayList
  */
 abstract class BaseGameActivity : AppCompatActivity(), FuncUtil, ViewUtil {
     val mHandler = Handler()
+    val mPop: RulePopup by lazy { RulePopup(this) }
+    val mGson = Gson()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,7 +54,7 @@ abstract class BaseGameActivity : AppCompatActivity(), FuncUtil, ViewUtil {
     }
 
     fun setBg(@DrawableRes bgRes: Int) {
-        v_bg.setImageResource(bgRes)
+        v_bg.setBackgroundResource(bgRes)
     }
 
     fun setBackBg(@DrawableRes id: Int) {
@@ -57,8 +62,11 @@ abstract class BaseGameActivity : AppCompatActivity(), FuncUtil, ViewUtil {
     }
 
     //设置游戏规则
-    fun setGameRule() {
-
+    fun setGameRule(path:String) {
+        v_game_rule.show()
+        v_game_rule.setOnClickListener {
+            mPop.showRule(path)
+        }
     }
 
     open fun getRightView(): Int = 0

@@ -9,12 +9,11 @@ import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentActivity
 import android.support.v4.content.FileProvider
+import android.util.Log
 import android.widget.Toast
 import com.blankj.utilcode.util.SDCardUtils
-import com.heid.games.BuildConfig
 import com.heid.games.base.BaseGameActivity
 import com.tbruyelle.rxpermissions2.RxPermissions
 import java.io.File
@@ -27,8 +26,8 @@ import java.io.File
  */
 interface FuncUtil {
 
-    fun Int.repeat(func:(i:Int)->Unit){
-        for ( i in 0 until this)
+    fun Int.repeat(func: (i: Int) -> Unit) {
+        for (i in 0 until this)
             func(i)
     }
 
@@ -39,7 +38,7 @@ interface FuncUtil {
                         Manifest.permission.CAMERA).subscribe {
                     if (it) {//打开相机
                         val imageUri: Uri
-                        val file = File(SDCardUtils.getSDCardPaths()[0], imageName+".jpg")
+                        val file = File(SDCardUtils.getSDCardPaths()[0], imageName + ".jpg")
                         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
                         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.N) {
                             intent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION or Intent.FLAG_GRANT_READ_URI_PERMISSION) //添加这一句表示对目标应用临时授权该Uri所代表的文件
@@ -47,11 +46,11 @@ interface FuncUtil {
                         } else {
                             imageUri = Uri.fromFile(file)
                         }
-                        (this as? BaseGameActivity)?.onAcResultList?.add({requestCode, resultCode, data ->
+                        (this as? BaseGameActivity)?.onAcResultList?.add({ requestCode, resultCode, data ->
                             if (resultCode != Activity.RESULT_CANCELED) {
                                 when (requestCode) {
                                     0x1011// 拍照返回
-                                    -> callback(BitmapFactory.decodeFile(file.absolutePath),file.absolutePath)
+                                    -> callback(BitmapFactory.decodeFile(file.absolutePath), file.absolutePath)
                                 }
                             }
                         })
@@ -66,4 +65,14 @@ interface FuncUtil {
     fun Any.toast(context: Context) {
         Toast.makeText(context, this.toString(), Toast.LENGTH_SHORT).show()
     }
+
+    fun Any.l(tag: String = "lucas") {
+        Log.d(tag, this.toString())
+    }
+
+    //泛型解析
+//    fun <T : Any> String.parsonJson(): BaseBean<T> {
+//        val t = object : TypeToken<BaseBean<T>>() {}.type
+//        return Gson().fromJson(this, t) as BaseBean<T>
+//    }
 }

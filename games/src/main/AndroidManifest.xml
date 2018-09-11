@@ -3,17 +3,18 @@
     package="com.heid.games">
 
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
-    <!-- 设置允许改变配置信息的权�?-->
+    <!-- 设置允许改变配置信息的权�? -->
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
 
     <application>
@@ -78,7 +79,14 @@
         <activity
             android:name=".model.pointguess.PlayGameActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".model.dice.DiceActivity"
+        <activity
+            android:name=".model.dice.DiceActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name=".model.dice.PlayActivity"
+            android:theme="@style/TranslucentTheme" />
+        <activity
+            android:name=".model.dice.OverActivity"
             android:theme="@style/TranslucentTheme" />
     </application>
 

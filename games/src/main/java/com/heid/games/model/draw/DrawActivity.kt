@@ -28,6 +28,7 @@ class DrawActivity : BaseGameActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setBg(R.mipmap.ic_draw_bg)
         setTitle("扫雷大作战")
         v_list.layoutManager = GridLayoutManager(this, 4)
         v_list.adapter = mAdapter

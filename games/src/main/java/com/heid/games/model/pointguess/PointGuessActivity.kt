@@ -21,6 +21,7 @@ class PointGuessActivity : BaseGameActivity() {
         super.onCreate(savedInstanceState)
         setBg(R.mipmap.ic_pg_bg)
         setTitle("你画我猜")
+        setGameRule("game_rule/nihuawocai.html")
         setBackBg(R.drawable.shape_back_y_bg)
         v_start.setOnClickListener {
             val buttonId = v_select_time.checkedRadioButtonId

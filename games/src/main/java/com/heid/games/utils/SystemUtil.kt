@@ -7,6 +7,7 @@ import android.net.wifi.WifiConfiguration
 import android.support.v4.content.ContextCompat.getSystemService
 import android.net.wifi.WifiManager
 import android.os.Vibrator
+import com.blankj.utilcode.util.NetworkUtils
 
 
 /**
@@ -48,23 +49,47 @@ object SystemUtil {
         return wifiInfo.ssid
     }
 
-    //打开热点
-    fun openHotWifi(activity: Activity, isOpen: Boolean, newWifiName: String = "heid", pwd: String = "123456"): Boolean {
+    //判断热点是否开启
+    fun isOpenApWifi(activity: Activity): Boolean {
+        try {
+            val wifiManager = activity.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
+            val value = wifiManager.javaClass.getDeclaredField("WIFI_AP_STATE_ENABLED").get(wifiManager)
+            val isOpen = wifiManager.javaClass.getDeclaredMethod("getWifiApState").invoke(wifiManager)
+            return isOpen == value
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+        return false
+    }
+
+    //打开/关闭热点
+    fun isEnableAPWifi(activity: Activity, isOpen: Boolean, newWifiName: String = "heid", pwd: String = "123456"): Boolean {
         val wifiManager = activity.applicationContext.getSystemService(Context.WIFI_SERVICE) as WifiManager
-        if (isOpen) {
+        if (isOpen && NetworkUtils.isWifiConnected()) {
             //先关闭wifi
             wifiManager.isWifiEnabled = false
         }
         try {
             //配置热点
             val configuration = WifiConfiguration()
-            //设置热点名称
-            configuration.SSID = newWifiName
-            //设置热点密码
-            configuration.preSharedKey = pwd
+            if (isOpen)
+                configuration.apply {
+                    //设置热点名称
+                    SSID = newWifiName
+                    //设置热点密码
+                    preSharedKey = pwd
+//                hiddenSSID = true
+                    allowedAuthAlgorithms.set(WifiConfiguration.AuthAlgorithm.OPEN)
+                    allowedGroupCiphers.set(WifiConfiguration.GroupCipher.TKIP)
+                    allowedKeyManagement.set(WifiConfiguration.KeyMgmt.WPA_PSK)
+                    allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.TKIP)
+                    allowedGroupCiphers.set(WifiConfiguration.GroupCipher.CCMP)
+                    allowedPairwiseCiphers.set(WifiConfiguration.PairwiseCipher.CCMP)
+                    status = WifiConfiguration.Status.ENABLED
+                }
             //反射调用热点
             val method = wifiManager.javaClass.getDeclaredMethod("setWifiApEnabled", WifiConfiguration::class.java, Boolean::class.java)
-            val b = method.invoke(wifiManager, configuration, true) as Boolean
+            val b = method.invoke(wifiManager, configuration, isOpen) as Boolean
             return b
         } catch (e: Exception) {
             e.printStackTrace()

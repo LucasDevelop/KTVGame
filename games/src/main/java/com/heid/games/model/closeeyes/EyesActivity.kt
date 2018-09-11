@@ -22,6 +22,7 @@ class EyesActivity : BaseGameActivity() {
         super.onCreate(savedInstanceState)
         setBg(R.mipmap.ic_eyes_bg)
         setTitle("天黑请闭眼")
+        setGameRule("game_rule/tianhei.html")
         v_seek.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
             override fun onProgressChanged(p0: SeekBar?, position: Int, p2: Boolean) {
                 personCount = position + 5

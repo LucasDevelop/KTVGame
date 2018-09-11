@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/ic_dice_bg"
+    android:clipChildren="false"
+    android:clipToPadding="false"
+    tools:context=".model.dice.PlayActivity">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@mipmap/ic_dice_star" />
+
+    <LinearLayout
+        android:id="@+id/v_glass_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/v_hint_text"
+        android:layout_centerInParent="true"
+        android:paddingBottom="25dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:gravity="center_horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:paddingLeft="10dp"
+            android:scaleType="fitStart"
+            android:src="@mipmap/ic_dice_up" />
+
+        <ImageView
+            android:id="@+id/v_glass_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_dice_glass1" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:layout_weight="1"
+            android:paddingRight="10dp"
+            android:scaleType="fitEnd"
+            android:src="@mipmap/ic_dice_down" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/v_hint_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="200dp"
+        android:text="摇动骰盅"
+        android:textColor="#cd5400"
+        android:textSize="16sp"
+        android:visibility="visible" />
+    <!--开-->
+
+
+    <LinearLayout
+        android:id="@+id/v_glass_point"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ImageView
+            android:id="@+id/v_glass_1"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:rotation="56"
+            android:src="@mipmap/ic_dice_5"
+            android:translationX="20dp" />
+
+        <ImageView
+            android:id="@+id/v_glass_2"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:rotation="30"
+            android:src="@mipmap/ic_dice_4"
+            android:translationX="28dp"
+            android:translationY="-58dp" />
+
+        <ImageView
+            android:id="@+id/v_glass_3"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:rotation="30"
+            android:src="@mipmap/ic_dice_4"
+            android:translationX="-30dp"
+            android:translationY="55dp" />
+
+        <ImageView
+            android:id="@+id/v_glass_4"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:rotation="45"
+            android:src="@mipmap/ic_dice_2"
+            android:translationX="-30dp"
+            android:translationY="20dp" />
+
+        <ImageView
+            android:id="@+id/v_glass_5"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:rotation="70"
+            android:src="@mipmap/ic_dice_1"
+            android:translationX="-40dp"
+            android:translationY="-40dp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/v_glass_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="15dp"
+        android:src="@mipmap/ic_dice_glass2"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/v_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        android:background="@mipmap/ic_dice_bt"
+        android:gravity="center"
+        android:text="开"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,10 +1,12 @@
 package com.heid.games.model.dice.bean
 
+import com.heid.games.socket.bean.UserInfoBean
+
 /**
  * @package     com.heid.games.model.dice.bean
  * @author      lucas
  * @date        2018/9/7
  * @des
  */
-class Players(val index: Int, val name: String, val icon: String, val isOnline: Boolean = false,val isAddView:Boolean = false) {
+class Players(var index: Int, var userInfo: UserInfoBean<Any?>? =null, var isOnline: Boolean = false, var isAddView:Boolean = false) {
 }

@@ -30,6 +30,7 @@ class CrowdNumActivity : BaseGameActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setBg(R.mipmap.ic_draw_bg)
         setTitle("疯狂挤数字")
         v_list.layoutManager = GridLayoutManager(this, 8)
         v_list.adapter = mAdapter

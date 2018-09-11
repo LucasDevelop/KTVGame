@@ -22,6 +22,7 @@ class UndercoverActivity : BaseGameActivity() {
         super.onCreate(savedInstanceState)
         setBg(R.mipmap.ic_under_bg)
         setTitle("谁是卧底")
+        setGameRule("game_rule/wodi.html")
         arrayOf(v_plus, v_reduce, v_double_play, v_single_play, v_start).forEach {
             it.setOnClickListener {
                 when (it) {

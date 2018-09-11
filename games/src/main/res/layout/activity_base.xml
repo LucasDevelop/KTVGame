@@ -4,14 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".model.draw.DrawActivity">
-    <ImageView
     android:id="@+id/v_bg"
-        android:scaleType="fitXY"
+    android:fitsSystemWindows="true"
         android:src="@mipmap/ic_draw_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    tools:context=".model.draw.DrawActivity">
     <RelativeLayout
         android:id="@+id/v_tool"
         android:layout_width="wrap_content"

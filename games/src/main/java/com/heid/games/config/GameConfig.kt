@@ -35,6 +35,6 @@ abstract class GameConfig {
         //房间上限人数
         internal val MAX_PLAYERS_COUNT = 11
         //socket配置
-        internal val SOCKET_PORT = 1022
+        internal val SOCKET_PORT = 8001
     }
 }
