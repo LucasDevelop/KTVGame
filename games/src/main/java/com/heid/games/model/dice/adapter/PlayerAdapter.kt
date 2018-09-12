@@ -38,7 +38,7 @@ class PlayerAdapter : BaseQuickAdapter<Players, BaseViewHolder>(R.layout.item_di
     }
 
     //用户上线
-    fun addOnlineUser(player: UserInfoBean<Any?>) {
+    fun addOnlineUser(player: UserInfoBean) {
         //判断用户是否已经在席位中
         if (data.find { it.userInfo != null && it.userInfo!!.user_id == player.user_id } != null) {
             "用户已在席位中".l()
@@ -56,14 +56,14 @@ class PlayerAdapter : BaseQuickAdapter<Players, BaseViewHolder>(R.layout.item_di
     }
 
     //获取在线用户
-    fun getOnlineUsers(): ArrayList<UserInfoBean<Any?>> {
-        val list = ArrayList<UserInfoBean<Any?>>()
+    fun getOnlineUsers(): ArrayList<UserInfoBean> {
+        val list = ArrayList<UserInfoBean>()
         data.filter { it.userInfo != null && it.isOnline }.forEach { list.add(it.userInfo!!) }
         return list
     }
 
     //刷新席位
-    fun refreshList(datas: ArrayList<UserInfoBean<Any?>>?) {
+    fun refreshList(datas: ArrayList<UserInfoBean>?) {
         if (datas != null) {
             for (i in 0 until datas.size) {
                 data[i].userInfo = datas[i]

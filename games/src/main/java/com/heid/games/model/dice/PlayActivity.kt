@@ -2,6 +2,7 @@ package com.heid.games.model.dice
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.TextUtils
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -17,6 +18,7 @@ import com.heid.games.utils.TCPUtil
 import kotlinx.android.synthetic.main.activity_play.*
 import java.util.*
 import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 
 /**
  * @package     com.heid.games.model.dice
@@ -77,7 +79,7 @@ class PlayActivity : BaseGameActivity(), TCPUtil {
                 "请先摇动骰盅".toast(this)
                 return@setOnClickListener
             } else
-                OverActivity.launch(this,resPoint)
+                OverActivity.launch(this, resPoint, null)
         }
         initServer()
     }
@@ -92,11 +94,41 @@ class PlayActivity : BaseGameActivity(), TCPUtil {
                     val type = object : TypeToken<BaseBean<UserInfoBean>>() {}.type
                     val bean = mGson.fromJson(json, type) as BaseBean<UserInfoBean>
                     task.userInfo = bean.data
+                    //判断所有人是否都摇过骰盅
+                    var isAll = true
+                    val data = HashMap<Int, Int>()
+                    data[1] = 0
+                    data[2] = 0
+                    data[3] = 0
+                    data[4] = 0
+                    data[5] = 0
+                    data[6] = 0
+                    TCPServer.connPoll.forEach {
+                        if (it.userInfo == null || it.userInfo?.glass_result == null)
+                            isAll = false
+                        if (!TextUtils.isEmpty(it.userInfo?.glass_result)) {
+                            it.userInfo?.glass_result!!.split(",").forEach {
+                                data[it.toInt()] = data[it.toInt()]!! + 1
+                            }
+                        }
+                    }
+                    //如果齐了，通知所有人
+                    if (isAll) {
+                        //加上自己的结果
+                        resPoint?.split(",")?.forEach {
+                            data[it.toInt()] = data[it.toInt()]!! + 1
+                        }
+                        BaseBean(0x5, "可以显示结果", 1, mGson.toJson(data)).sendDataAllToClient()
+                    }
                 }
             }
         } else if (TCPClient.isOpen) {//客户端
             TCPClient.onReceiverSuccess = { action, json, task ->
-
+                if(action == 0x5){//开
+                    val type = object : TypeToken<HashMap<Int, Int>>() {}.type
+                    val map = mGson.fromJson<HashMap<Int, Int>>(json,type)
+                    OverActivity.launch(this,resPoint,map)
+                }
             }
         } else {
             //未连接

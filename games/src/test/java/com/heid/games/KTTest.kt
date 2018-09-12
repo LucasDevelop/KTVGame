@@ -18,14 +18,18 @@ import kotlin.concurrent.thread
 class KTTest {
     @Test
     fun test() {
-        InetAddress.getLocalHost().hostAddress.p()
-        Thread({
-                Thread.sleep(500)
-            TCPClient.connServer("169.254.209.140")
-            TCPClient.getClient().sendData(BaseBean(0x01, "send msg", 1))
-        }).start()
-        //开启服务器
-        TCPServer.initServer()
+//        InetAddress.getLocalHost().hostAddress.p()
+//        Thread({
+//                Thread.sleep(500)
+//            TCPClient.connServer("169.254.209.140")
+//            TCPClient.getClient().sendData(BaseBean(0x01, "send msg", 1))
+//        }).start()
+//        //开启服务器
+//        TCPServer.initServer()
+        val map = Gson().fromJson("{\"1\":2,\"2\":0,\"3\":3}", HashMap::class.java)
+        map.forEach { key, value ->
+            "k:$key,v:$value".p()
+        }
     }
 
     fun Any.p() {

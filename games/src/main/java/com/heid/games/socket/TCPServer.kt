@@ -74,7 +74,7 @@ object TCPServer {
         private val writer: OutputStream by lazy { socket.getOutputStream() }
         private var threadName: String = ""
         var tag:Any? = null //标记
-        var userInfo:UserInfoBean<Any?>?=null//用户信息
+        var userInfo:UserInfoBean?=null//用户信息
 
         override fun run() {
             threadName = Thread.currentThread().name

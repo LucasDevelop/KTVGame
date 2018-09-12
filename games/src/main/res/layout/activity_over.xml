@@ -7,12 +7,13 @@
     tools:context=".model.dice.OverActivity">
 
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#ff924c"
         android:gravity="center_vertical"
         android:paddingBottom="7dp"
-        android:paddingLeft="20dp"
+        android:paddingLeft="17dp"
         android:paddingTop="7dp">
 
         <LinearLayout
@@ -22,13 +23,15 @@
             android:orientation="vertical">
 
             <ImageView
-                android:layout_width="42dp"
-                android:layout_height="42dp"
+                android:id="@+id/v_icon"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:background="@drawable/shape_dice_icon_bg"
                 android:padding="1dp"
                 android:src="@mipmap/ic_dice_def_icon" />
 
             <TextView
+                android:id="@+id/v_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -41,12 +44,15 @@
             android:id="@+id/v_glass_contain"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
+            android:layout_marginLeft="10dp"
             android:orientation="horizontal" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/v_res_contain"
         android:layout_width="match_parent"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/v_play_again"
         android:layout_marginBottom="40dp"
@@ -56,13 +62,78 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_dice_over_num_bg"
+            android:paddingBottom="3dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="没叫过1"
                 android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:visibility="invisible"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_top_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_top_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_top_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_top_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_top_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -73,11 +144,12 @@
             android:gravity="center_vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:text="统计"
+                android:gravity="center"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -85,21 +157,117 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_dice_1" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_dice_2" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
                     android:src="@mipmap/ic_dice_3" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_dice_4" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_dice_5" />
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="5dp"
+                    android:src="@mipmap/ic_dice_6" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_dice_over_num_bg"
+            android:paddingBottom="3dp"
+            android:paddingLeft="13dp"
+            android:paddingRight="10dp"
+            android:paddingTop="3dp">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="50dp"
                 android:layout_height="wrap_content"
                 android:text="叫过1"
                 android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/v_num_bottom_0"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_bottom_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="2"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_bottom_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="3"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_bottom_3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="4"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_bottom_4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="5"
+                    android:textColor="@android:color/white" />
+
+                <TextView
+                    android:id="@+id/v_num_bottom_5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:text="6"
+                    android:textColor="@android:color/white" />
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
 

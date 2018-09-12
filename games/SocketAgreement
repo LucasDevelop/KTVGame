@@ -10,5 +10,5 @@ action 相当于接口名称
 >发送骰子结果
 {"action":0x4,"msg":"发送骰子结果","data":{"user_id":1,"username":"lucas","icon":"htttp://xxxxxx","glass_result":"1,2,2,6,5"}}
 
->服务器确认收到所有骰子结果后通知所有客服端可以开了
-{"action":0x5,"status":0/1,"msg":"通知可以开了","data":null}
+>服务器确认收到所有骰子结果后通知所有客户端可以开了
+{"action":0x5,"status":0/1,"msg":"通知可以开了","data":{"1":0,"2":5.....}}

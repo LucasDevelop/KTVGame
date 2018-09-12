@@ -55,7 +55,6 @@ class PlayGameActivity : BaseGameActivity() {
         super.onCreate(savedInstanceState)
         setBg(R.mipmap.ic_pg_bg)
         setTitle("你画我猜")
-        setBackBg(R.drawable.shape_back_y_bg)
         v_pager.setScanScroll(false)
         findViewById<View>(R.id.v_tool).visibility = View.GONE
         v_pager.adapter = GamePagerAdapter()
