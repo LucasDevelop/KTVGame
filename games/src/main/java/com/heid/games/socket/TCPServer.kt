@@ -50,13 +50,6 @@ object TCPServer {
         } catch (e: BindException) {//端口被占用
             e.printStackTrace()
             onCreateFail()
-            //出口
-            if (prot >= 9999) {
-                return
-            }
-            //使用新端口
-            prot++
-            initServer()
         } catch (e: Exception) {
             e.printStackTrace()
         } finally {
@@ -138,6 +131,8 @@ object TCPServer {
     //关闭服务器
     fun close() {
         isOpen = false
+        threadPoll.shutdown()
+        socketServer?.close()
     }
 
     private fun Any.p() {

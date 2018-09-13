@@ -33,9 +33,12 @@ object TCPClient {
             isOpen = true
             client = ConnTask(socket)
             client?.start()
-            return true
             "链接服务器成功 ip:${ip},prot:${prot}".p()
+            return true
         } catch (e: Exception) {
+            //链接失败延时重连
+            Thread.sleep(300)
+            connServer(ip)
             e.printStackTrace()
             "链接服务器失败".p()
             return false

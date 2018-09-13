@@ -97,12 +97,12 @@ class PlayActivity : BaseGameActivity(), TCPUtil {
                     //判断所有人是否都摇过骰盅
                     var isAll = true
                     val data = HashMap<Int, Int>()
+                    data[0] = 0
                     data[1] = 0
                     data[2] = 0
                     data[3] = 0
                     data[4] = 0
                     data[5] = 0
-                    data[6] = 0
                     TCPServer.connPoll.forEach {
                         if (it.userInfo == null || it.userInfo?.glass_result == null)
                             isAll = false
@@ -118,16 +118,16 @@ class PlayActivity : BaseGameActivity(), TCPUtil {
                         resPoint?.split(",")?.forEach {
                             data[it.toInt()] = data[it.toInt()]!! + 1
                         }
-                        BaseBean(0x5, "可以显示结果", 1, mGson.toJson(data)).sendDataAllToClient()
+                        BaseBean(0x5, "可以显示结果", 1, data).sendDataAllToClient()
                     }
                 }
             }
         } else if (TCPClient.isOpen) {//客户端
             TCPClient.onReceiverSuccess = { action, json, task ->
                 if(action == 0x5){//开
-                    val type = object : TypeToken<HashMap<Int, Int>>() {}.type
-                    val map = mGson.fromJson<HashMap<Int, Int>>(json,type)
-                    OverActivity.launch(this,resPoint,map)
+                    val type = object : TypeToken<BaseBean<HashMap<Int, Int>>>() {}.type
+                    val map = mGson.fromJson<BaseBean<HashMap<Int, Int>>>(json,type)
+                    OverActivity.launch(this,resPoint,map.data)
                 }
             }
         } else {
